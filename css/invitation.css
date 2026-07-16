@@ -1,0 +1,540 @@
+/* ===================================================================
+   WEDDING INVITATION — DETAILS PAGE STYLES
+   Akhil & Arya
+   =================================================================== */
+
+/* ---------- 1. TOKENS (mirrors style.css so either page can stand alone) ---------- */
+:root{
+  --royal-blue:      #163E7A;
+  --royal-blue-deep:  #0E2C57;
+  --royal-blue-light: #24509A;
+  --gold:            #D4AF37;
+  --gold-light:      #F2D37A;
+  --gold-deep:       #9C7A1E;
+  --cream:           #F8F5EE;
+  --white:           #FFFFFF;
+  --ink:             #2B2B2B;
+
+  --font-script:  'Great Vibes', cursive;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Cormorant Garamond', Georgia, serif;
+
+  --card-max-w: 420px;
+  --ease-soft: cubic-bezier(.22,.61,.36,1);
+}
+
+*, *::before, *::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body.inv-body{
+  margin:0;
+  min-height:100dvh;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: #001f18;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x:hidden;
+}
+
+@font-face {
+    font-family: 'Alunas';
+    src: url('../fonts/Alunas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+button, input, textarea{ font-family:inherit; }
+img{ max-width:100%; display:block; }
+a{ text-decoration:none; color:inherit; }
+
+/* ---------- 2. AMBIENT BACKGROUND: floating florals + sparkle ---------- */
+.ambient{
+  position:fixed; inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.bloom{
+  position:absolute;
+  width: 120px; height:120px;
+  color: var(--gold);
+  opacity:.1;
+  /* animation: floatSlow 22s ease-in-out infinite; */
+}
+.bloom-1{ top: 6%;  left: -30px; animation-duration: 26s; }
+.bloom-2{ top: 48%; right: -40px; animation-duration: 30s; animation-delay: -6s; color: var(--royal-blue); }
+.bloom-3{ bottom: 4%; left: 8%; width:90px; height:90px; animation-duration: 24s; animation-delay: -12s; }
+
+@keyframes floatSlow{
+  0%,100%{ transform: translateY(0) rotate(0deg); }
+  50%{ transform: translateY(-26px) rotate(8deg); }
+}
+
+.spark{
+  position:absolute;
+  width:4px; height:4px;
+  border-radius:50%;
+  background: var(--gold-light);
+  opacity:.12;
+  animation: sparkle 6s ease-in-out infinite;
+}
+.spark-1{ top:12%; left:20%; animation-delay:0s; }
+.spark-2{ top:30%; left:78%; animation-delay:-1.5s; }
+.spark-3{ top:62%; left:12%; animation-delay:-3s; }
+.spark-4{ top:75%; left:65%; animation-delay:-4.5s; }
+.spark-5{ top:20%; left:50%; animation-delay:-2.2s; }
+@keyframes sparkle{
+  0%,100%{ opacity:.05; transform: scale(1); }
+  50%{ opacity:.15; transform: scale(1.8); }
+}
+
+/* ---------- 3. PAGE / CARD LAYOUT ---------- */
+.page{
+  position:relative;
+  z-index:1;
+  display:flex;
+  justify-content:center;
+  /* padding: 28px 14px 56px; */
+}
+.card{
+  width:100%;
+  max-width: var(--card-max-w);
+  opacity:1;
+  /* transform: translateY(48px); */
+  /* animation: cardEnter 900ms var(--ease-soft) forwards; */
+}
+@keyframes cardEnter{
+  to{ opacity:1; transform:translateY(0); }
+}
+
+.card-frame{
+  position:relative;
+  background: linear-gradient(180deg, var(--royal-blue) 0%, var(--royal-blue-deep) 100%);
+  border: 2px solid var(--gold);
+  /* border-radius: 22px; */
+  padding: 34px 22px 26px;
+  /* box-shadow: 0 24px 60px rgba(14,44,87,.28), inset 0 0 0 6px rgba(212,175,55,.12); */
+  overflow:hidden;
+      background-image: url(../123.jpg);
+     
+}
+.card-texture{
+  position:absolute; inset:0;
+  opacity:.5;
+  mix-blend-mode: overlay;
+  pointer-events:none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 1px, transparent 1px 3px);
+}
+
+/* corner flourishes */
+/* .card-frame::before, .card-frame::after{
+  content:"";
+  position:absolute;
+  width: 34px; height:34px;
+  border-top: 1px solid var(--gold-light);
+  border-left: 1px solid var(--gold-light);
+  top: 10px; left:10px;
+  opacity:.7;
+}
+.card-frame::after{
+  top:auto; left:auto; bottom:10px; right:10px;
+  border-top:none; border-left:none;
+    border-right: 1px solid var(--gold-light);
+    border-top: 1px solid var(--gold-light);
+    top: 10px;
+}
+ */
+
+
+
+
+
+
+/* ---------- 4. STAGGERED REVEAL (each element fades in, 250ms apart) ---------- */
+.reveal{
+  opacity:0;
+  transform: translateY(14px);
+  animation: revealUp 700ms var(--ease-soft) forwards;
+  animation-delay: calc(300ms + (var(--d, 0) * 250ms));
+  position:relative;
+  z-index:1;
+}
+@keyframes revealUp{
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* ---------- 5. HEADER / NAMES ---------- */
+.card-header{ text-align:center; margin-bottom: 4px; }
+.kicker{
+  margin:0;
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+.names-block{ text-align:center; margin: 6px 0 18px; }
+.bride-name, .groom-name{
+  margin:0;
+ 
+}
+.amp-divider{
+  display:flex; align-items:center; justify-content:center;
+  gap: 10px;
+  margin: 4px auto;
+  width: 70%;
+  color: var(--gold-light);
+}
+.amp-divider .line{ flex:1; height:1px; background: currentColor; opacity:.6; }
+.amp-divider .amp{ font-family: var(--font-display); font-style:italic; font-size:18px; }
+
+.message{
+  text-align:center;
+  margin: 0 0 18px;
+  font-size: 17px;
+  font-style: italic;
+  line-height:1.6;
+  color: rgba(248,245,238,.92);
+}
+
+.divider-flourish{
+  display:flex; justify-content:center;
+  color: var(--gold-light);
+  margin: 0 0 20px;
+}
+
+/* ---------- 6. COUNTDOWN ---------- */
+.countdown{ text-align:center; margin-bottom: 22px; }
+.countdown-label{
+  margin:0 0 10px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color: var(--gold-light);
+}
+.countdown-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.c-unit{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(212,175,55,.35);
+  border-radius: 12px;
+  padding: 10px 4px;
+}
+.c-num{
+  display:block;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 5.6vw, 26px);
+  font-weight:600;
+  color: var(--white);
+  font-variant-numeric: tabular-nums;
+}
+.c-label{
+  display:block;
+  margin-top:2px;
+  font-size: 10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color: var(--gold-light);
+}
+
+/* ---------- 7. DETAIL BLOCKS (ceremony / reception / dress code) ---------- */
+.detail-block{
+  text-align:center;
+  padding: 16px 8px;
+  margin-bottom: 4px;
+  /* border-top: 1px solid rgba(212,175,55,.25); */
+}
+.detail-block--tight{ padding-bottom: 22px; }
+.detail-eyebrow{
+  margin:0 0 6px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color: var(--gold-light);
+}
+.detail-date{
+  margin:0 0 2px;
+  font-size: 19px;
+  font-weight:600;
+  color: var(--white);
+}
+.detail-time{
+  margin:0 0 4px;
+  font-size: 22px;
+  font-family: var(--font-display);
+  color: var(--gold-light);
+}
+.detail-venue{
+  margin:0;
+  font-size: 16px;
+  line-height:1.5;
+  color: rgba(248,245,238,.9);
+}
+
+/* ---------- 8. ACTION BUTTONS ---------- */
+.actions{
+  display:grid;
+  /* grid-template-columns: 1fr 1fr; */
+  gap: 10px;
+  margin: 22px 0 26px;
+}
+.btn{
+  display:flex; align-items:center; justify-content:center;
+  gap:8px;
+  min-height: 48px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+  color: var(--royal-blue-deep);
+  font-weight:600;
+  font-size: 14px;
+  letter-spacing:.02em;
+  cursor:pointer;
+  transition: transform .15s var(--ease-soft), box-shadow .15s var(--ease-soft), filter .15s;
+}
+.btn:active{ transform: scale(.96); }
+.btn:hover{ filter: brightness(1.05); box-shadow: 0 6px 16px rgba(212,175,55,.35); }
+.btn-primary{
+  grid-column: 1 / -1;
+  background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+  color: var(--white);
+}
+.btn-ghost{
+  grid-column: 1 / -1;
+  background: transparent;
+  color: var(--gold-light);
+}
+.btn-block{ width:100%; }
+
+/* ---------- 9. GALLERY ---------- */
+.gallery{ margin: 26px 0 6px; }
+.gallery-track{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 0 6px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width:none;
+}
+.gallery-track::-webkit-scrollbar{ display:none; }
+.gallery-slide{
+  flex: 0 0 82%;
+  scroll-snap-align: center;
+  aspect-ratio: 4/5;
+  border-radius: 14px;
+  overflow:hidden;
+  border: 1px solid rgba(212,175,55,.4);
+  background: linear-gradient(160deg, rgba(212,175,55,.18), rgba(255,255,255,.05));
+}
+.gallery-slide img{ width:100%; height:100%; object-fit:cover; }
+.gallery-slide--empty{
+  display:flex; align-items:center; justify-content:center;
+}
+.gallery-slide--empty::after{
+  content:"Add your photo";
+  font-family: var(--font-display);
+  font-size:13px;
+  letter-spacing:.1em;
+  color: var(--gold-light);
+  opacity:.7;
+}
+.gallery-slide--empty img{ display:none; }
+.gallery-dots{
+  display:flex; justify-content:center; gap:6px; margin-top:8px;
+}
+.gallery-dots span{
+  width:6px; height:6px; border-radius:50%;
+  background: rgba(212,175,55,.35);
+}
+.gallery-dots span.is-active{ background: var(--gold-light); }
+
+/* ---------- 10. FOOTER ---------- */
+.footer{ text-align:center; margin-top: 22px; }
+.footer-heart{ margin:0; font-size:15px; color: var(--gold-light); }
+.footer-thanks{ margin:4px 0 0; font-size:14px; font-style:italic; color: rgba(248,245,238,.85); }
+
+/* ---------- 11. FLOATING MUSIC BUTTON ---------- */
+.music-btn{
+  position:fixed;
+  right: 18px; bottom: 18px;
+  width:52px; height:52px;
+  border-radius:50%;
+  border: 1px solid var(--gold);
+  background: #002820;
+  color: var(--gold-light);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 10px 24px rgba(14,44,87,.35);
+  z-index: 20;
+  cursor:pointer;
+  transition: transform .2s var(--ease-soft);
+}
+.music-btn:active{ transform: scale(.92); }
+
+.music-btn.is-playing .icon-note{ 
+  display:none; 
+}
+.music-btn.is-playing .icon-pause{ 
+  display:block !important; 
+}
+
+.icon-pause{
+  display: none;
+}
+.music-btn.is-playing{ animation: notePulse 2s ease-in-out infinite; }
+@keyframes notePulse{
+  0%,100%{ box-shadow: 0 10px 20px rgba(14,44,87,.35); }
+  50%{ box-shadow: 0 10px 24px rgba(212,175,55,.55); }
+}
+
+/* ---------- 12. RSVP MODAL ---------- */
+.modal-backdrop{
+  position:fixed; inset:0;
+  background: rgba(14,44,87,.55);
+  backdrop-filter: blur(3px);
+  display:flex; align-items:flex-end; justify-content:center;
+  z-index: 30;
+}
+@media (min-width:520px){
+  .modal-backdrop{ align-items:center; }
+}
+.modal{
+  position:relative;
+  width:100%; max-width: 420px;
+  background: var(--cream);
+  border: 2px solid var(--gold);
+  border-radius: 20px 20px 0 0;
+  padding: 26px 22px 30px;
+  box-shadow: 0 -10px 40px rgba(0,0,0,.3);
+  animation: modalUp .35s var(--ease-soft);
+}
+@media (min-width:520px){
+  .modal{ border-radius:20px; animation: modalPop .3s var(--ease-soft); }
+}
+@keyframes modalUp{ from{ transform: translateY(40px); opacity:0;} to{ transform:translateY(0); opacity:1; } }
+@keyframes modalPop{ from{ transform: scale(.94); opacity:0;} to{ transform:scale(1); opacity:1; } }
+
+.modal-close{
+  position:absolute; top:12px; right:14px;
+  width:36px; height:36px;
+  border:none; background:transparent;
+  font-size:22px; line-height:1;
+  color: var(--royal-blue);
+  cursor:pointer;
+}
+.modal-title{
+  margin:0 0 6px;
+  font-family: var(--font-script);
+  font-size:34px;
+  color: var(--royal-blue);
+}
+.modal-text{ margin:0 0 16px; font-size:15px; color:#4a4a4a; }
+.rsvp-form{ display:flex; flex-direction:column; gap:12px; }
+.field{ display:flex; flex-direction:column; gap:6px; font-size:13px; letter-spacing:.05em; color: var(--royal-blue-deep); }
+.field input, .field textarea{
+  border: 1px solid rgba(22,62,122,.3);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 16px; /* prevents iOS auto-zoom */
+  background: var(--white);
+  color: var(--ink);
+  min-height:48px;
+  resize: vertical;
+}
+.field input:focus, .field textarea:focus{
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+.modal-success{
+  text-align:center;
+  margin-top:14px;
+  font-size:16px;
+  color: var(--royal-blue);
+}
+
+/* ---------- 13. RESPONSIVE TWEAKS ---------- */
+@media (min-width: 480px){
+  .page{ padding-top: 0px; }
+}
+@media (max-width: 340px){
+  .bride-name, .groom-name{ font-size: 40px; }
+  .card-frame{ padding: 26px 16px 20px; }
+}
+
+/* ---------- 14. REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce){
+  .card, .reveal, .bloom, .spark, .music-btn.is-playing{ animation: none !important; opacity:1 !important; transform:none !important; }
+}
+
+
+
+.rose-container{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:999;
+}
+
+.rose{
+    position:absolute;
+    top:-80px;
+    animation-name:fallRose;
+    animation-timing-function:linear;
+    animation-fill-mode:forwards;
+    will-change:transform;
+    opacity:.95;
+}
+
+.rose img{
+    display:block;
+    width:100%;
+    height:auto;
+}
+
+@keyframes fallRose{
+
+    0%{
+        transform:
+            translate3d(0,-60px,0)
+            rotate(0deg);
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    25%{
+        transform:
+            translate3d(-30px,25vh,0)
+            rotate(30deg);
+    }
+
+    50%{
+        transform:
+            translate3d(40px,50vh,0)
+            rotate(180deg);
+    }
+
+    75%{
+        transform:
+            translate3d(-25px,75vh,0)
+            rotate(270deg);
+    }
+
+    100%{
+        transform:
+            translate3d(35px,110vh,0)
+            rotate(360deg);
+        opacity:0;
+    }
+
+}

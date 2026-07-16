@@ -1,0 +1,1659 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Nunito:wght@400;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+html,
+body {
+  --wed-bg: #f5efe6;
+  --wed-bg-soft: #efe6da;
+  --wed-paper: #fffdf8;
+  --wed-paper-deep: #f6efe5;
+  --wed-green: #4f6a57;
+  --wed-green-soft: #7d9b82;
+  --wed-gold: #b39663;
+  --wed-text: #3d352f;
+  --wed-text-soft: #635951;
+  margin: 0;
+  min-height: 100vh;
+  height: auto;
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: radial-gradient(circle at top, #fbf6f1 0%, var(--wed-bg) 55%, var(--wed-bg-soft) 100%);
+  color: var(--wed-text);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+@font-face {
+    font-family: 'Alunas';
+    src: url('../fonts/Alunas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.wed-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+}
+
+.wed-style-picker {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at top, rgba(251, 246, 241, 0.96) 0%, rgba(245, 239, 230, 0.98) 55%, rgba(239, 230, 218, 0.99) 100%);
+}
+
+.wed-style-picker.is-active {
+  display: flex;
+  animation: wedFadeIn 0.45s ease both;
+}
+
+.wed-style-picker-card {
+  width: min(92vw, 24rem);
+  padding: 2rem 1.6rem 1.75rem;
+  text-align: center;
+  background: linear-gradient(180deg, var(--wed-paper) 0%, var(--wed-paper-deep) 100%);
+  border: 1px solid rgba(179, 150, 99, 0.35);
+  box-shadow: 0 18px 40px rgba(61, 53, 47, 0.12);
+}
+
+.wed-style-picker-title {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.55rem, 5vw, 1.9rem);
+  font-weight: 600;
+  color: var(--wed-text);
+  letter-spacing: 0.02em;
+}
+
+.wed-style-picker-sub {
+  margin: 0.65rem 0 0;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--wed-text-soft);
+}
+
+.wed-style-picker-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+}
+
+.wed-style-picker-btn {
+  appearance: none;
+  border: 1px solid rgba(79, 106, 87, 0.35);
+  background: rgba(255, 253, 248, 0.9);
+  color: var(--wed-green);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.wed-style-picker-btn:hover,
+.wed-style-picker-btn:focus-visible {
+  background: var(--wed-green);
+  border-color: var(--wed-green);
+  color: #fffdf8;
+  outline: none;
+}
+
+.wed-style-picker-btn:active {
+  transform: translateY(1px);
+}
+
+.wed-session {
+  display: none;
+  min-height: 100vh;
+  /* min-height: 100dvh; */
+  /* padding: 1.2rem; */
+  align-items: center;
+  justify-content: center;
+}
+
+.wed-session.is-active {
+  display: flex;
+  animation: wedFadeIn 0.6s ease both;
+}
+
+.wed-session-3 {
+  position: relative;
+}
+
+.wed-silk-bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.5), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.35), transparent 35%),
+    linear-gradient(140deg, #f2e8db 0%, #ecdece 45%, #e9dccf 100%);
+  z-index: -1;
+      background-image: url(https://thumbs.dreamstime.com/b/elegant-floral-border-white-blossoms-green-leaves-light-textured-background-perfect-sptime-wedding-invitations-375172732.jpg);
+    background-size: cover;
+}
+
+.wed-envelope-wrap {
+  width: min(92vw, 800px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wed-envelope {
+  --wed-flap-height: 270px;
+  width: 100%;
+  position: relative;
+  perspective: 1000px;
+  padding-top: 0;
+}
+
+.wed-envelope-top-text {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: #fff;
+  margin-bottom: 0;
+  z-index: 3;
+  transition: opacity 0.35s ease;
+}
+
+.wed-envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--wed-flap-height);
+  background: linear-gradient(180deg, #fffdf9 0%, #f5ede3 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 96%);
+  border-radius: 18px 18px 0 0;
+  transform-origin: top center;
+  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  z-index: 3;
+  background: #596f46;
+}
+
+.wed-envelope-body {
+  position: relative;
+  height: 390px;
+  margin-top: 0;
+  background: linear-gradient(180deg, #202c15 0%, #2a3b1c 100%);
+  border-radius: 20px 20px 20px 20px;
+  box-shadow: 0 20px 50px rgba(68, 52, 36, 0.15);
+  overflow: hidden;
+  z-index: 2;
+  
+}
+
+.wed-envelope-fold-left,
+.wed-envelope-fold-right,
+.wed-envelope-bottom-fold {
+  position: absolute;
+  pointer-events: none;
+}
+
+.wed-envelope-floral {
+  position: absolute;
+  font-size: 0.92rem;
+  letter-spacing: 0.16em;
+  color: rgba(176, 145, 102, 0.5);
+  text-shadow: 0 0 6px rgba(255, 250, 242, 0.35);
+  z-index: 4;
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+.wed-envelope-floral-left {
+  left: 1rem;
+  bottom: 0.85rem;
+  transform: rotate(-8deg);
+  transform-origin: left bottom;
+}
+
+.wed-envelope-floral-right {
+  right: 1rem;
+  bottom: 0.85rem;
+  transform: rotate(8deg) scaleX(-1);
+  transform-origin: right bottom;
+}
+
+.wed-envelope-fold-left {
+  left: 0;
+  top: 0;
+  width: 54%;
+  height: 100%;
+  background: linear-gradient(140deg, rgb(89 111 69), rgb(51 67 36));
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+      border-radius: 17px;
+}
+
+.wed-envelope-fold-right {
+  right: 0;
+  top: 0;
+  width: 54%;
+  height: 100%;
+  background: linear-gradient(140deg, rgb(89 111 69), rgb(51 67 36));
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+      border-radius: 17px;
+}
+
+.wed-envelope-bottom-fold {
+  left: -6%;
+    bottom: -16%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 75%;
+    clip-path: polygon(-1% 0, 107% 0, 53% 94%);
+  background: linear-gradient(140deg, rgb(89 111 69), rgb(51 67 36));
+  transform: rotate(180deg);
+}
+
+.wed-seal {
+  position: absolute;
+  left: 48%;
+  top: calc(var(--wed-flap-height) - 52px);
+  transform: translate(-50%, -50%);
+  width: 108px;
+  height: 108px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background: radial-gradient(circle at 30% 30%, #cda96f 0%, #8b6a38 100%);
+  color: #fff6e8;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  letter-spacing: 0.08em;
+  /* box-shadow: 0 12px 20px rgba(81, 57, 26, 0.35); */
+  z-index: 10;
+  background-image: url(../PhotoshopExtension_Image\ \(25\).svg);
+  background-size: cover;
+}
+
+.wed-envelope-note {
+  text-align: center;
+  margin-top: 0.9rem;
+  font-family: 'Nunito', sans-serif;
+  color: var(--wed-text-soft);
+}
+
+.wed-envelope.is-open .wed-envelope-flap {
+  transform: rotateX(165deg);
+  background: linear-gradient(180deg, #e6d7c5 0%, #d9c4a9 100%);
+  background: #3c4d2d;
+}
+
+.wed-envelope.is-open .wed-envelope-top-text {
+  opacity: 0;
+}
+
+.wed-card {
+  width: 100%;
+  background: linear-gradient(165deg, var(--wed-paper) 0%, var(--wed-paper-deep) 100%);
+  border: 1px solid rgba(79, 106, 87, 0.2);
+  /* border-radius: 22px; */
+  padding: clamp(1.2rem, 4vw, 2.6rem);
+  box-shadow: 0 16px 45px rgba(74, 64, 54, 0.12);
+  text-align: center;
+  position: relative;
+  background-image: url(../123.jpg);
+}
+
+.wed-card-invite {
+  overflow: hidden;
+}
+
+.wed-details-card {
+  overflow: hidden;
+}
+
+.wed-invite-deco {
+  position: absolute;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  z-index: 1;
+}
+
+.wed-invite-deco-top-right {
+  top: -1.2rem;
+  right: -0.6rem;
+  width: clamp(200px, 26vw, 250px);
+}
+
+.wed-invite-deco-bottom-left {
+  left: 0rem;
+  bottom: 0rem;
+  width: clamp(140px, 22vw, 210px);
+  z-index: 3;
+}
+
+.wed-invite-deco-bottom-center {
+  left: 50%;
+  bottom: 0;
+  transform: translate(-56%, 1.4rem);
+  width: clamp(340px, 18vw, 170px);
+  z-index: 2;
+}
+
+body.wed-local-couple-img-adjust .wed-invite-deco-bottom-center {
+  transform: translate(-56%, 2.4rem);
+  width: 250px;
+}
+
+body.wed-couple-img-smaller .wed-invite-deco-bottom-center {
+  width: clamp(200px, 42vw, 240px);
+  transform: translate(-56%, 1rem);
+}
+
+body.wed-couple-img-muslim-demo .wed-invite-deco-bottom-center {
+  width: clamp(250px, 52vw, 290px);
+  transform: translate(-56%, 1.15rem);
+}
+
+body.wed-bottom-flower-dual .wed-invite-deco-bottom-left,
+body.wed-bottom-flower-dual .wed-invite-deco-bottom-right {
+  width: clamp(110px, 16vw, 158px);
+}
+
+body.wed-bottom-flower-dual .wed-invite-deco-bottom-right {
+  right: 0;
+  left: auto;
+  bottom: 0;
+  z-index: 3;
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+.wed-details-deco {
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  max-width: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  opacity: 1;
+
+  z-index: 1;
+}
+
+.wed-details-deco-top {
+  top: 0;
+  transform: translate(-50%, -30%) rotate(180deg);
+
+}
+
+.wed-details-deco-bottom {
+  bottom: 0;
+  transform: translate(-50%, 30%);
+}
+
+.wed-card-controls {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.wed-card-controls-session-2 {
+  justify-content: flex-start;
+}
+
+.wed-control-spacer {
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+.wed-session-2 .wed-card,
+.wed-session-3 .wed-card {
+  /* height: 870px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.wed-session-2 .wed-card {
+  justify-content: flex-start;
+  padding-top: clamp(4.8rem, 8vw, 6.2rem);
+}
+
+.wed-bismillah-wrap {
+  display: none;
+}
+
+body.wed-has-bismillah .wed-bismillah-wrap {
+  position: absolute;
+  left: 50%;
+  top: calc(clamp(4.8rem, 8vw, 6.2rem) + 4.2rem);
+  transform: translate(-50%, -100%);
+  display: flex;
+  justify-content: center;
+  width: min(54vw, 210px);
+  margin: 0;
+  padding-bottom: 0.2rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+body.wed-has-bismillah .wed-bismillah {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.85s ease;
+}
+
+body.wed-has-bismillah .wed-bismillah-wrap.is-visible .wed-bismillah {
+  opacity: 1;
+}
+
+body.wed-has-bismillah .wed-kicker {
+  margin-top: 1.15rem;
+}
+
+body.wed-has-bismillah .wed-ring-center {
+  margin-top: -1.15rem;
+}
+
+.wed-kicker {
+  margin: 0 0 0.8rem;
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--wed-green);
+  position: relative;
+  z-index: 2;
+}
+
+.wed-couple {
+  margin: 0;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3rem, 10vw, 5.4rem);
+  color: #6d8d74;
+  line-height: 1.05;
+  position: relative;
+  z-index: 2;
+}
+
+/* Optional per-client couple font (e.g. ajix-kesiya) */
+body.wed-couple-font-pinyon .wed-couple {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.75rem, 9vw, 4.75rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+body.wed-couple-decorative-cursive .wed-couple {
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+body.wed-couple-font-allura .wed-couple {
+  font-family: 'Allura', 'Pinyon Script', cursive;
+  font-weight: 400;
+  font-size: clamp(3.05rem, 10.5vw, 5.45rem);
+  letter-spacing: 0.025em;
+  line-height: 1.02;
+}
+
+/* Flowing cursive with better iOS Safari / Chrome support than Allura / Great Vibes */
+body.wed-couple-font-dancing-bold .wed-couple {
+  font-family: 'Dancing Script', 'Apple Chancery', cursive;
+  font-weight: 700;
+  font-size: clamp(2.85rem, 9.8vw, 5.1rem);
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ornate wedding script — more decorative than Dancing Script, with script fallbacks for iOS */
+body.wed-couple-font-sacramento .wed-couple {
+  font-family: 'Sacramento', 'Dancing Script', 'Apple Chancery', cursive;
+  font-weight: 400;
+  font-size: clamp(3.1rem, 10.8vw, 5.6rem);
+  letter-spacing: 0.015em;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Flowing calligraphic cursive — more decorative strokes than Sacramento */
+body.wed-couple-font-alex-brush .wed-couple {
+  font-family: 'Alex Brush', 'Dancing Script', 'Apple Chancery', cursive;
+  font-weight: 400;
+  font-size: clamp(3.15rem, 11vw, 5.65rem);
+  letter-spacing: 0.025em;
+  line-height: 0.98;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ornate italic serif — Safari/Chrome safe, elegant wedding look */
+body.wed-couple-font-cormorant .wed-couple {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2.7rem, 9.4vw, 4.9rem);
+  letter-spacing: 0.035em;
+  line-height: 1.06;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Classic upright serif — non-cursive couple names */
+body.wed-couple-font-playfair .wed-couple {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: clamp(2.55rem, 8.6vw, 4.4rem);
+  letter-spacing: 0.04em;
+  line-height: 1.08;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Handwritten wedding script — more decorative than serif, safer on iOS than Alex Brush */
+body.wed-couple-font-satisfy .wed-couple {
+  font-family: 'Satisfy', 'Dancing Script', 'Apple Chancery', cursive;
+  font-weight: 400;
+  font-size: clamp(3.05rem, 10.8vw, 5.45rem);
+  letter-spacing: 0.02em;
+  line-height: 1.04;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wed-ring-center {
+  position: relative;
+  width: min(100%, 520px);
+  margin: 0.15rem auto 0.75rem;
+  z-index: 2;
+}
+
+.wed-ring-image {
+  display: block;
+  width: 100%;
+  max-width: 490px;
+  margin: 0 auto;
+}
+
+.wed-couple-vertical {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.12rem;
+  line-height: 0.95;
+  white-space: normal;
+  width: min(58%, 170px);
+}
+
+.wed-couple-vertical #wed-groom-name {
+  align-self: flex-start;
+  padding-left: 0.22rem;
+}
+
+.wed-couple-vertical .wed-amp {
+  align-self: center;
+  margin-top: 0rem;
+  margin-bottom: 0.6rem;
+}
+
+.wed-couple-vertical #wed-bride-name {
+  align-self: flex-end;
+  padding-right: 0.22rem;
+}
+
+/* Bride-first: top name (bride) left, bottom name (groom) right */
+body.wed-bride-first .wed-couple-vertical #wed-bride-name {
+  align-self: flex-start;
+  padding-left: 0.22rem;
+  padding-right: 0;
+}
+
+body.wed-bride-first .wed-couple-vertical #wed-groom-name {
+  align-self: flex-end;
+  padding-right: 0.22rem;
+  padding-left: 0;
+}
+
+/* Optional per-client ring name position (e.g. thanveer-sidra) */
+body.wed-groom-name-shift-left .wed-couple-vertical #wed-groom-name {
+  transform: translateX(-0.9rem);
+}
+
+body.wed-bride-name-shift-right .wed-couple-vertical #wed-bride-name {
+  transform: translateX(0.9rem);
+}
+
+body.wed-ring-names-centered .wed-couple-vertical {
+  align-items: center;
+  width: min(66%, 220px);
+}
+
+body.wed-ring-names-centered .wed-couple-vertical #wed-groom-name,
+body.wed-ring-names-centered .wed-couple-vertical #wed-bride-name,
+body.wed-ring-names-centered .wed-couple-vertical .wed-amp {
+  align-self: center;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  transform: none;
+}
+
+body.wed-ring-names-centered .wed-couple-vertical .wed-amp {
+  margin-bottom: 0.38rem;
+}
+
+body.wed-ring-slightly-larger .wed-couple {
+  font-size: clamp(2.8rem, 8.9vw, 4.45rem);
+}
+
+body.wed-ring-slightly-larger .wed-ring-center {
+  width: min(100%, 600px);
+}
+
+body.wed-ring-slightly-larger .wed-ring-image {
+  max-width: 565px;
+  transform: scale(1.08);
+  transform-origin: center;
+}
+
+body.wed-ring-slightly-larger .wed-couple-vertical .wed-amp {
+  font-size: 0.46em;
+}
+
+.wed-fly-line {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1em;
+}
+
+.wed-fly-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translate(var(--sx, 0), var(--sy, 0)) rotate(var(--rot, 0deg)) scale(0.72);
+  filter: blur(3px);
+  transition:
+    transform 1.15s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 1.05s ease,
+    filter 1.05s ease;
+  transition-delay: var(--delay, 0ms);
+  will-change: transform, opacity;
+}
+
+.wed-couple-vertical.wed-fly-active .wed-fly-letter {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg) scale(1);
+  filter: blur(0);
+}
+
+.wed-amp {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.7em;
+  color: var(--wed-gold);
+}
+
+.wed-parents-dual {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex: 1;
+  margin: -1.5rem 0 1.8rem;
+  position: relative;
+  z-index: 2;
+}
+
+.wed-parents-col {
+  flex: 1;
+  min-width: 0;
+  max-width: 48%;
+}
+
+.wed-parents-groom {
+  text-align: left;
+}
+
+.wed-parents-bride {
+  text-align: right;
+}
+
+.wed-parents-col.is-hidden {
+  display: none;
+}
+
+.wed-parents-col .wed-parent-prefix {
+  text-align: inherit;
+}
+
+.wed-parents-col .wed-parent-name {
+  text-align: inherit;
+}
+
+.wed-parents-bride .wed-parent-name {
+  transform: translateX(12px);
+  clip-path: inset(0 0 0 100%);
+}
+
+.wed-parents-bride .wed-parent-name.wed-parent-name-visible {
+  transform: translateX(0);
+  clip-path: inset(0 0 0 0);
+}
+
+/* Bride-side invite: bride column is first (left), groom second (right) */
+body.wed-bride-first .wed-parents-bride {
+  text-align: left;
+}
+
+body.wed-bride-first .wed-parents-groom {
+  text-align: right;
+}
+
+body.wed-bride-first .wed-parents-bride .wed-parent-name {
+  transform: translateX(-12px);
+  clip-path: inset(0 100% 0 0);
+}
+
+body.wed-bride-first .wed-parents-groom .wed-parent-name {
+  transform: translateX(12px);
+  clip-path: inset(0 0 0 100%);
+}
+
+body.wed-bride-first .wed-parents-bride .wed-parent-name.wed-parent-name-visible,
+body.wed-bride-first .wed-parents-groom .wed-parent-name.wed-parent-name-visible {
+  transform: translateX(0);
+  clip-path: inset(0 0 0 0);
+}
+
+.wed-parents-dual:not(:has(.wed-parents-bride:not(.is-hidden))) .wed-parents-groom {
+  max-width: min(100%, 20rem);
+}
+
+.wed-info-row {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: -1.25rem;
+}
+
+.wed-parent-prefix {
+  margin: 0 0 0.15rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(79, 106, 87, 0.85);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.wed-parent-name {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--wed-text-soft);
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(-12px);
+  clip-path: inset(0 100% 0 0);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease,
+    clip-path 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.wed-parent-name.wed-parent-name-visible {
+  opacity: 1;
+  transform: translateX(0);
+  clip-path: inset(0 0 0 0);
+}
+
+.wed-parent-line {
+  display: inline;
+}
+
+.wed-parent-line + .wed-parent-line::before {
+  content: ' & ';
+}
+
+.wed-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.82rem 1.8rem;
+  background: linear-gradient(135deg, #6c8a73 0%, #4f6a57 100%);
+  color: #f9f5ef;
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.wed-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(69, 99, 80, 0.28);
+}
+
+.wed-session-2 #wed-to-session-3 {
+  align-self: flex-end;
+  width: auto;
+  margin-bottom: 1.8rem;
+}
+
+.wed-heading {
+    margin: 0 0 0.9rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 12PX;
+    color: #f2d37a;
+    position: relative;
+    z-index: 2;
+    letter-spacing: .34em;
+}
+
+.wed-date-session {
+  position: relative;
+  z-index: 2;
+  margin: 0.35rem 0 1.25rem;
+  color: #7f6339;
+}
+
+.wed-date-month,
+.wed-date-day,
+.wed-date-time {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: clamp(0.95rem, 2.4vw, 1.32rem);
+}
+
+.wed-date-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) auto minmax(140px, 1fr);
+  align-items: center;
+  gap: clamp(1.4rem, 3.6vw, 2.8rem);
+  margin-top: 0.55rem;
+}
+
+.wed-date-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.42rem;
+}
+
+.wed-date-line {
+  width: 100%;
+  height: 1px;
+  background: rgba(132, 102, 60, 0.58);
+}
+
+.wed-date-number {
+  margin: 0;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3.4rem, 10vw, 5.2rem);
+  line-height: 0.9;
+  color: #8c6838;
+  transform: translateY(0.04em) scale(1.45);
+}
+
+.wed-date-month,
+.wed-date-number,
+.wed-date-day,
+.wed-date-time {
+  opacity: 0;
+}
+
+.wed-date-month {
+  transform: scale(1.45);
+  transition: transform 0.62s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.52s ease;
+}
+
+.wed-date-number {
+  transition: transform 0.68s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.56s ease;
+}
+
+.wed-date-day {
+  transform: translateX(-42px);
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s ease;
+  transition-delay: 0.65s;
+}
+
+.wed-date-time {
+  transform: translateX(42px);
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s ease;
+  transition-delay: 0.65s;
+}
+
+.wed-date-session.wed-date-animate-active .wed-date-month {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.wed-date-session.wed-date-animate-active .wed-date-number {
+  opacity: 1;
+  transform: translateY(0.04em) scale(1);
+}
+
+.wed-date-session.wed-date-animate-active .wed-date-day,
+.wed-date-session.wed-date-animate-active .wed-date-time {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.wed-session-3 .wed-heading,
+.wed-session-3 .wed-insha-allah,
+.wed-session-3 .wed-counter-grid,
+.wed-session-3 .wed-address,
+.wed-session-3 .wed-action-row,
+.wed-session-3 .wed-warm-note,
+.wed-session-3 .wed-details-floret-row,
+.wed-session-3 .wed-blessings {
+  opacity: 0;
+  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(10px);
+}
+
+.wed-session-3 .wed-counter-grid {
+  transition-delay: 0.12s;
+}
+
+.wed-session-3 .wed-insha-allah {
+  transition-delay: 0.08s;
+}
+
+.wed-insha-allah {
+  margin: 0.35rem 0 0.15rem;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.75rem, 5.2vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--wed-green);
+  position: relative;
+  z-index: 2;
+}
+
+.wed-session-3 .wed-address {
+  transition-delay: 0.22s;
+}
+
+.wed-session-3 .wed-action-row {
+  transition-delay: 0.3s;
+}
+
+.wed-session-3 .wed-warm-note {
+  transition-delay: 0.38s;
+}
+
+.wed-session-3 .wed-details-floret-row {
+  transition-delay: 0.42s;
+}
+
+.wed-session-3 .wed-blessings {
+  transition-delay: 0.46s;
+}
+
+.wed-session-3.wed-s3-text-active .wed-heading,
+.wed-session-3.wed-s3-text-active .wed-insha-allah,
+.wed-session-3.wed-s3-text-active .wed-counter-grid,
+.wed-session-3.wed-s3-text-active .wed-address,
+.wed-session-3.wed-s3-text-active .wed-action-row,
+.wed-session-3.wed-s3-text-active .wed-warm-note,
+.wed-session-3.wed-s3-text-active .wed-details-floret-row,
+.wed-session-3.wed-s3-text-active .wed-blessings {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wed-counter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(80px, 1fr));
+  gap: 0;
+  margin: 1rem 0 1.4rem;
+  position: relative;
+  z-index: 2;
+  background: rgba(109, 141, 116, 0.11);
+  border: 1px solid rgb(212 175 55 / 51%);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.wed-counter-grid div {
+  background: transparent;
+  border: 0;
+  border-right: 1px solid rgb(115 106 46);
+  padding: 0.8rem 0.35rem;
+}
+
+.wed-counter-grid div:last-child {
+  border-right: 0;
+}
+
+.wed-counter-grid span {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.45rem, 4vw, 2rem);
+  color: #fff;
+}
+
+.wed-counter-grid small {
+    color: #bb9b42;
+    font-family: 'Playfair Display', Georgia, serif;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: .14em;
+}
+
+.wed-address {
+  margin: 0.2rem auto 1rem;
+  font-size: 1.2rem;
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.wed-address::before {
+  content: "";
+  display: inline-block;
+  width: 0.95em;
+  height: 0.95em;
+  margin-right: 0.35rem;
+  vertical-align: -0.08em;
+  background-color: var(--wed-green);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.08 5.15 11.92 6.06 13.08.5.63 1.45.63 1.95 0C13.85 20.92 19 14.08 19 9c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.08 5.15 11.92 6.06 13.08.5.63 1.45.63 1.95 0C13.85 20.92 19 14.08 19 9c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.wed-btn-link {
+  display: inline-block;
+  margin-bottom: 1.1rem;
+}
+
+.wed-action-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.wed-action-row .wed-btn-link {
+  margin-bottom: 1.1rem;
+}
+
+.wed-session-3 .wed-action-row {
+  gap: 0.35rem 0.55rem;
+  align-content: center;
+}
+
+.wed-session-3 .wed-action-row .wed-btn-link {
+  margin-bottom: 0.2rem;
+}
+
+body.wed-inline-contact-buttons .wed-action-row {
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+body.wed-inline-contact-buttons .wed-contact-links {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+body.wed-inline-contact-buttons .wed-contact-links .wed-btn-contact {
+  flex: 1 1 0;
+  width: 0;
+  padding: 0.7rem 0.55rem;
+  font-size: clamp(0.8rem, 3.2vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  margin-bottom: 0;
+  white-space: nowrap;
+  text-align: center;
+  min-width: 0;
+}
+
+.wed-warm-note {
+  margin: 0.2rem auto 0.2rem;
+  max-width: 650px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  color: var(--wed-text-soft);
+  position: relative;
+  z-index: 2;
+}
+
+.wed-warm-note::before,
+.wed-warm-note::after {
+  content: none;
+  display: none;
+}
+
+.wed-details-floret-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.35rem, 2.2vw, 1rem);
+  margin: 0.2rem auto 0.3rem;
+  padding: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  z-index: 2;
+  line-height: 1;
+}
+
+/* Same ❦ look as the former side ornaments: Nunito + --wed-green-soft (was 0.8em of invite line) */
+.wed-details-floret-row .wed-floret {
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(0.85rem, 2.2vw, 1.1rem);
+  color: var(--wed-green-soft);
+}
+
+.wed-blessings {
+  margin-top: 0.25rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--wed-green);
+  position: relative;
+  z-index: 2;
+}
+
+.wed-mute-btn {
+  position: relative;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(61, 53, 47, 0.86);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 30;
+}
+
+.wed-mute-btn.is-visible {
+  display: inline-flex;
+}
+
+.wed-back-btn {
+  position: relative;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(61, 53, 47, 0.86);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.3rem;
+  line-height: 1;
+  pointer-events: auto;
+  z-index: 30;
+}
+
+.wed-love-rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.wed-love-drop {
+  position: absolute;
+  top: -12%;
+  color: rgba(79, 106, 87, 0.95);
+  text-shadow: 0 0 8px rgba(79, 106, 87, 0.35);
+  line-height: 1;
+  animation-name: wedLoveDrop;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes wedLoveDrop {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 120vh, 0) rotate(24deg);
+    opacity: 0;
+  }
+}
+
+@keyframes wedFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .wed-envelope {
+    padding-top: 0;
+    --wed-flap-height: 205px;
+  }
+
+  .wed-envelope-flap {
+    height: var(--wed-flap-height);
+  }
+
+  .wed-envelope-top-text {
+    top: 36px;
+  }
+
+  
+
+  .wed-envelope-body {
+    height: 295px;
+  }
+
+  .wed-envelope-floral {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+  }
+
+  .wed-seal {
+    width: 115px;
+    height: 120px;
+    font-size: 1.2rem;
+    top: calc(var(--wed-flap-height) - 42px);
+  }
+
+  .wed-ring-image {
+    max-width: 360px;
+  }
+
+  body.wed-ring-slightly-larger .wed-ring-image {
+    max-width: 410px;
+    transform: scale(1.06);
+  }
+
+  .wed-couple-vertical {
+    gap: 0.08rem;
+  }
+
+  body.wed-couple-mob-smaller .wed-couple {
+    font-size: clamp(2.45rem, 8.2vw, 3.45rem);
+  }
+
+  body.wed-ring-slightly-larger .wed-couple {
+    font-size: clamp(2.3rem, 7.7vw, 3.2rem);
+  }
+
+  body.wed-couple-mob-smaller .wed-couple-vertical {
+    width: min(54%, 156px);
+  }
+
+  body.wed-couple-mob-smaller .wed-couple-vertical .wed-amp {
+    margin-bottom: 0.5rem;
+  }
+
+  body.wed-ring-names-centered .wed-couple-vertical {
+    width: min(66%, 200px);
+  }
+
+  body.wed-ring-slightly-larger .wed-ring-center {
+    width: min(100%, 420px);
+  }
+
+  body.wed-ring-names-centered .wed-couple-vertical .wed-amp {
+    margin-bottom: 0.32rem;
+  }
+
+  body.wed-ring-slightly-larger .wed-couple-vertical .wed-amp {
+    font-size: 0.4em;
+  }
+
+  body.wed-groom-name-shift-left .wed-couple-vertical #wed-groom-name {
+    transform: translateX(-0.65rem);
+  }
+
+  body.wed-bride-name-shift-right .wed-couple-vertical #wed-bride-name {
+    transform: translateX(0.65rem);
+  }
+
+  .wed-invite-deco-top-right {
+    top: -0.7rem;
+    right: -0.4rem;
+  }
+
+  .wed-invite-deco-bottom-center {
+    transform: translate(-54%, 1rem);
+  }
+
+  body.wed-local-couple-img-adjust .wed-invite-deco-bottom-center {
+    transform: translate(-54%, 1.8rem);
+    width: 300px;
+  }
+
+  body.wed-couple-img-smaller .wed-invite-deco-bottom-center {
+    width: clamp(170px, 48vw, 210px);
+    transform: translate(-54%, 0.75rem);
+  }
+
+  body.wed-couple-img-muslim-demo .wed-invite-deco-bottom-center {
+    width: clamp(210px, 56vw, 250px);
+    transform: translate(-54%, 0.9rem);
+  }
+
+  body.wed-bottom-flower-dual .wed-invite-deco-bottom-left,
+  body.wed-bottom-flower-dual .wed-invite-deco-bottom-right {
+    width: clamp(94px, 14vw, 132px);
+  }
+
+  .wed-details-deco {
+    width: 100%;
+    max-width: none;
+    opacity: 1;
+  }
+
+  .wed-details-deco-top {
+    top: 0;
+    transform: translate(-50%, -18%) rotate(180deg);
+  }
+
+  .wed-details-deco-bottom {
+    bottom: 0;
+    transform: translate(-50%, 18%);
+  }
+
+  .wed-parent-name {
+    font-size: 1.2rem;
+  }
+
+  .wed-info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    margin-top: 0.2rem;
+  }
+
+  .wed-info-row .wed-parents-dual {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .wed-session-2 #wed-to-session-3 {
+    align-self: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .wed-counter-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .wed-counter-grid div {
+    border-bottom: 0;
+    /* border-right: 1px solid rgba(79, 106, 87, 0.24); */
+  }
+
+  .wed-counter-grid div:last-child {
+    border-right: 0;
+  }
+
+  .wed-session-2 .wed-card {
+    padding-top: 7.4rem;
+  }
+
+  body.wed-has-bismillah .wed-bismillah-wrap {
+    top: calc(4.4rem + 3.5rem);
+    width: min(48vw, 178px);
+    padding-bottom: 0.15rem;
+  }
+
+  body.wed-has-bismillah .wed-kicker {
+    margin-top: 1.2rem;
+  }
+
+  body.wed-has-bismillah .wed-ring-center {
+    margin-top: -1.2rem;
+  }
+
+  .wed-date-month,
+  .wed-date-day,
+  .wed-date-time {
+    letter-spacing: 0.2em;
+  }
+
+  .wed-date-row {
+    grid-template-columns: minmax(96px, 1fr) auto minmax(96px, 1fr);
+    gap: 0.9rem;
+    margin-top: 0.7rem;
+  }
+
+  .wed-date-number {
+    justify-self: center;
+  }
+
+  .wed-date-side {
+    width: 100%;
+  }
+}
+
+/* Tablet: groom & bride parents stacked on the left */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .wed-parents-dual {
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: 0.85rem;
+    width: 100%;
+    max-width: 100%;
+    margin: -0.4rem 0 0.6rem;
+  }
+
+  .wed-parents-col {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .wed-parents-groom,
+  .wed-parents-bride {
+    text-align: left;
+  }
+
+  .wed-parents-bride .wed-parent-name {
+    transform: translateX(-12px);
+    clip-path: inset(0 100% 0 0);
+  }
+
+  .wed-parents-bride .wed-parent-name.wed-parent-name-visible {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Mobile: groom left, bride right; father & mother on separate lines */
+@media (max-width: 768px) {
+  .wed-parents-dual {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin: -0.4rem 0 0.6rem;
+  }
+
+  .wed-parents-col {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 48%;
+  }
+
+  .wed-parents-groom {
+    text-align: left;
+    align-self: flex-start;
+  }
+
+  .wed-parents-bride {
+    text-align: right;
+    align-self: flex-start;
+    margin-left: auto;
+  }
+
+  .wed-parent-prefix {
+    font-size: 0.72rem;
+    text-align: inherit;
+  }
+
+  .wed-parent-name {
+    font-size: 1.05rem;
+    line-height: 1.25;
+    text-align: inherit;
+  }
+
+  .wed-parent-line {
+    display: block;
+  }
+
+  .wed-parent-line + .wed-parent-line::before {
+    content: none;
+  }
+
+  .wed-parent-line + .wed-parent-line {
+    margin-top: 0.12rem;
+  }
+
+  .wed-parents-groom .wed-parent-line {
+    text-align: left;
+  }
+
+  .wed-parents-bride .wed-parent-line {
+    text-align: right;
+  }
+
+  .wed-parents-bride .wed-parent-name {
+    transform: translateX(12px);
+    clip-path: inset(0 0 0 100%);
+  }
+
+  .wed-parents-bride .wed-parent-name.wed-parent-name-visible {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+
+  body.wed-bride-first .wed-parents-bride {
+    text-align: left;
+    align-self: flex-start;
+    margin-left: 0;
+  }
+
+  body.wed-bride-first .wed-parents-groom {
+    text-align: right;
+    align-self: flex-start;
+    margin-left: auto;
+  }
+
+  body.wed-bride-first .wed-parents-bride .wed-parent-line {
+    text-align: left;
+  }
+
+  body.wed-bride-first .wed-parents-groom .wed-parent-line {
+    text-align: right;
+  }
+
+  body.wed-bride-first .wed-parents-bride .wed-parent-name {
+    transform: translateX(-12px);
+    clip-path: inset(0 100% 0 0);
+  }
+
+  body.wed-bride-first .wed-parents-groom .wed-parent-name {
+    transform: translateX(12px);
+    clip-path: inset(0 0 0 100%);
+  }
+}
+
+
+.bride-name, .groom-name {
+    margin: 0;
+    /* font-family: var(--font-script); */
+    font-family: 'Alunas', sans-serif;
+    font-size: 40px;
+    line-height: 1.1;
+    color: #fff;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, .25);
+}
+
+.amp-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 4px auto;
+    width: 70%;
+    color: #7f6907;
+}
+
+.reveal {
+    /* opacity: 0; */
+    transform: translateY(14px);
+    animation: revealUp 700ms var(--ease-soft) forwards;
+    animation-delay: calc(300ms + (var(--d, 0) * 250ms));
+    position: relative;
+    z-index: 1;
+}
+.amp-divider .line {
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: .6;
+}
+
+.amp-divider .amp {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+}
+
+.amp-divider .line {
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: .6;
+}
