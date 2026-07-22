@@ -138,8 +138,9 @@ body {
     radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.35), transparent 35%),
     linear-gradient(140deg, #f2e8db 0%, #ecdece 45%, #e9dccf 100%);
   z-index: -1;
-      background-image: url(https://thumbs.dreamstime.com/b/elegant-floral-border-white-blossoms-green-leaves-light-textured-background-perfect-sptime-wedding-invitations-375172732.jpg);
+      /* background-image: url(https://thumbs.dreamstime.com/b/elegant-floral-border-white-blossoms-green-leaves-light-textured-background-perfect-sptime-wedding-invitations-375172732.jpg); */
     background-size: cover;
+    background-image: url(https://i.pinimg.com/1200x/42/a9/83/42a9836e21a23ccb4f2ccf859a49edc5.jpg);
 }
 
 .wed-envelope-wrap {
@@ -250,6 +251,8 @@ body {
   background: linear-gradient(140deg, rgb(89 111 69), rgb(51 67 36));
   clip-path: polygon(100% 0, 0 50%, 100% 100%);
       border-radius: 17px;
+
+      
 }
 
 .wed-envelope-bottom-fold {
@@ -258,18 +261,18 @@ body {
     transform: translateX(-50%);
     width: 120%;
     height: 75%;
-    clip-path: polygon(-1% 0, 107% 0, 53% 94%);
+    clip-path: polygon(-4% 0, 109% 0, 53% 87%);
   background: linear-gradient(140deg, rgb(89 111 69), rgb(51 67 36));
   transform: rotate(180deg);
 }
 
 .wed-seal {
-  position: absolute;
-  left: 48%;
-  top: calc(var(--wed-flap-height) - 52px);
-  transform: translate(-50%, -50%);
-  width: 108px;
-  height: 108px;
+    position: absolute;
+    left: 49%;
+    top: calc(var(--wed-flap-height) - 39px);
+    transform: translate(-50%, -50%);
+    width: 138px;
+    height: 158px;
   border: 0;
   border-radius: 50%;
   cursor: pointer;
@@ -403,16 +406,16 @@ body.wed-bottom-flower-dual .wed-invite-deco-bottom-right {
   transform: translate(-50%, 30%);
 }
 
-.wed-card-controls {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  pointer-events: none;
-}
+/* .wed-card-controls {
+  position: fixed;
+   
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
+    bottom: 30px;
+} */
 
 .wed-card-controls-session-2 {
   justify-content: flex-start;
@@ -1192,20 +1195,38 @@ body.wed-inline-contact-buttons .wed-contact-links .wed-btn-contact {
 }
 
 .wed-mute-btn {
-  position: relative;
-  width: 2.6rem;
-  height: 2.6rem;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(61, 53, 47, 0.86);
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  pointer-events: auto;
-  z-index: 30;
+  position:fixed;
+    top: max(16px, env(safe-area-inset-top));
+    right: 16px;
+    z-index:99999;
+
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#f2d37b;
+    border:1px solid rgba(0,0,0,.08);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
+
+
+.wed-mute-btn:hover{
+    transform: scale(1.08);
+}
+
+.wed-mute-btn:active{
+    transform: scale(.95);
+}
+
+.wed-mute-btn img{
+    width:24px;
+    height:24px;
+    pointer-events:none;
+}
+
 
 .wed-mute-btn.is-visible {
   display: inline-flex;
@@ -1657,3 +1678,46 @@ body.wed-inline-contact-buttons .wed-contact-links .wed-btn-contact {
     background: currentColor;
     opacity: .6;
 }
+
+
+.qr{
+    border: 4px solid #ffffff;
+    width: 110px;
+    margin: 0 auto;
+}
+
+.p-t{
+      text-align: center;
+    color: #ffffff;
+    padding-top: 10px;
+    /* font-family: 'Alunas', sans-serif; */
+    text-transform: lowercase;
+}
+
+
+
+.ct{
+  position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    left: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    /* box-shadow: 2px 2px 3px #999; */
+    z-index: 100;
+    line-height: 68px;
+}
+
+
+
+    .tt{
+    position: absolute;
+    top: -29px;
+    left: -30px;
+    width: 150px;
+    }
+ 

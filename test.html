@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vyshak &amp; Devika - Wedding Invitation</title>
-  <link rel="icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/my-bel0ved.firebasestorage.app/o/templates%2Fshared%2Fimages%2Fmy_beloved_icon.png?alt=media&amp;token=9a9e8e87-85d9-4777-919b-64cc62094d92">
+  <!-- <link rel="icon" type="g" href="https://firebasestorage.googleapis.com/v0/b/my-bel0ved.firebasestorage.app/o/templates%2Fshared%2Fimages%2Fmy_beloved_icon.png?alt=media&amp;token=9a9e8e87-85d9-4777-919b-64cc62094d92"> -->
   <link rel="stylesheet" href="css/new.css">
   <link rel="stylesheet" href="css/new2.css">
   <link rel="stylesheet" href="css/invitation.css">
@@ -49,15 +49,20 @@
 
       <div class="wed-card wed-details-card">
         <img class="wed-details-deco wed-details-deco-top" src="https://firebasestorage.googleapis.com/v0/b/my-bel0ved.firebasestorage.app/o/templates%2Fshared%2Fimages%2Fwedding%20t1%2Fgreen_flower_5.png?alt=media&amp;token=80624f3e-ba39-4670-b938-64eac02de6d6" alt="" aria-hidden="true">
-        <!-- <img class="wed-details-deco wed-details-deco-bottom" src="https://firebasestorage.googleapis.com/v0/b/my-bel0ved.firebasestorage.app/o/templates%2Fshared%2Fimages%2Fwedding%20t1%2Fgreen_flower_5.png?alt=media&amp;token=80624f3e-ba39-4670-b938-64eac02de6d6" alt="" aria-hidden="true"> -->
+       
+       
         <div class="wed-card-controls">
-          <!-- <button id="wed-back-to-session-2" class="wed-back-btn" type="button" aria-label="Go back to previous session">←</button> -->
-          <!-- <button class="wed-mute-btn" type="button" aria-label="Mute music">🔊</button> -->
-
-          <button class="wed-mute-btn" id="musicBtn" type="button">
-    <span id="musicIcon">🔊</span>
+        <button class="wed-mute-btn" id="musicBtn" type="button" aria-label="Play / Pause Music">
+    <img id="musicIcon" src="Play.svg" width="24" height="24" alt="Play / Pause">
 </button>
+
+   
+
+
         </div>
+
+
+         
         <h2 class="wed-heading">THE WEDDING OF </h2>
 
        <h1 class="bride-name reveal" style="--d:1">Vyshak K</h1>
@@ -113,11 +118,12 @@
         </svg>
       </div>
 
-
+<a href="https://maps.app.goo.gl/MHMyzhL7eMYPGV6Y7"><img class="qr" src="qr-code.png"></a>
         
+<p class="p-t"> click the QR CODE and get the location</p>
 
-      
-        <p class="wed-blessings" id="wed-blessings-text">Blessings from VYJITH, Jenis &amp; Abraham</p>
+<!--       
+        <p class="wed-blessings" class="wed-blessings-text">Blessings from VYJITH</p> -->
       </div>
       
     </section>
@@ -128,16 +134,7 @@
 
 
 
-  <style>
-    .tt{
-          position: absolute;
-    top: -29px;
-    left: -30px;
-    width: 150px;
-    }
-  </style>
-
-  <audio id="bgMusic" loop>
+  <audio id="wed-music" loop>
     <source src="music/A Brides Priceless Smile  Malik Events  Kerala Wedding  Bridal Entry  Kalyanam  Wedding Video.mp3" type="audio/mpeg">
 </audio>
 
@@ -145,44 +142,7 @@
 
 
 
-<script>
 
-
-const bgMusic = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
-const musicIcon = document.getElementById("musicIcon");
-new Audio("music/A Brides Priceless Smile  Malik Events  Kerala Wedding  Bridal Entry  Kalyanam  Wedding Video.mp3").play();
-
-
-audio.play();
-
-
-bgMusic.play().catch(err => console.log(err));
-
-musicBtn.addEventListener("click", function () {
-
-    if (bgMusic.paused) {
-        bgMusic.play();
-        musicIcon.src = "🔊";
-    } else {
-        bgMusic.pause();
-        musicIcon.src = "🔇";
-    }
-
-});
-
-openBtn.addEventListener("click", function(){
-
-    // Envelope animation...
-
-    bgMusic.play();
-
-});
-
-
-
-
-</script>
   <!-- <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script> -->
   <script src="../../../js/global.js"></script>

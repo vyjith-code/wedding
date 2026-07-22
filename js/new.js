@@ -400,7 +400,7 @@
     setText('wed-time-text', eventTime);
     setText('wed-date-time', getTimeDisplayLabel(eventTime));
     setText('wed-address-text', getAttr('data-event-address', 'Pallisseey bagavathi temple, thrissur'));
-    setText('wed-blessings-text', getAttr('data-blessings', 'Blessings from Adam, Jenis & Abraham'));
+    setText('wed-blessings-text', getAttr('data-blessings', ''));
 
     if (sealInitials) {
       var sealGroomFirst = getAttr('data-seal-groom-first', '') === 'true';
@@ -512,12 +512,15 @@
     });
   }
 
-  function startMusic() {
+ function startMusic() {
     if (!audio) return;
+
     applyMusicVolume();
+
     audio.play().catch(function () {});
+
     showMuteButton(true);
-  }
+}
 
   function launchHeartShower() {
     var burst = document.createElement('div');
@@ -608,17 +611,52 @@
     });
   }
 
-  if (muteBtns && muteBtns.length && audio) {
-    muteBtns.forEach(function (muteBtn) {
-      muteBtn.addEventListener('click', function () {
-        audio.muted = !audio.muted;
-        muteBtns.forEach(function (btn) {
-          btn.textContent = audio.muted ? '🔇' : '🔊';
-          btn.setAttribute('aria-label', audio.muted ? 'Unmute music' : 'Mute music');
+if (muteBtns && muteBtns.length && audio) {
+
+    const PLAY_ICON = "pause.svg";
+    const PAUSE_ICON = "play.svg";
+
+    function updateIcon() {
+
+        muteBtns.forEach(function(btn){
+
+            var img = btn.querySelector("img");
+
+            if(!img) return;
+
+            if(audio.muted){
+                img.src = PLAY_ICON;
+                img.alt = "Play Music";
+            }else{
+                img.src = PAUSE_ICON;
+                img.alt = "Mute Music";
+            }
+
         });
-      });
+
+    }
+
+    muteBtns.forEach(function(btn){
+
+        btn.addEventListener("click",function(){
+
+            audio.muted = !audio.muted;
+
+            updateIcon();
+
+        });
+
     });
-  }
+
+    audio.addEventListener("play",updateIcon);
+    audio.addEventListener("pause",updateIcon);
+
+    updateIcon();
+
+}
+  
+
+
 
   hydrate();
   runFirebaseImageInit();
