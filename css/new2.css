@@ -21,7 +21,7 @@ body {
   background: radial-gradient(circle at top, #fbf6f1 0%, var(--wed-bg) 55%, var(--wed-bg-soft) 100%);
   color: var(--wed-text);
   font-family: 'Cormorant Garamond', serif;
-   width: 100%;
+  width: 100%;
   min-height: 100%;
 }
 
@@ -125,10 +125,10 @@ body {
 .wed-session {
   display: none;
   min-height: 100vh;
-  
+
   align-items: center;
   justify-content: center;
- 
+
 }
 
 .wed-session.is-active {
@@ -1707,7 +1707,7 @@ body.wed-inline-contact-buttons .wed-contact-links .wed-btn-contact {
   color: #ffffff;
   padding-top: 10px;
   /* font-family: 'Alunas', sans-serif; */
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
   font-family: "DM Sans", sans-serif;
 }
 
@@ -1739,19 +1739,19 @@ body.wed-inline-contact-buttons .wed-contact-links .wed-btn-contact {
 }
 
 
-.line-1{
-      width: 24%;
-    margin: 15px auto 0;
-    padding-bottom: 20px;
-    color: #f2d37b;
-    border: 0;
-    border-top: .1px solid;
+.line-1 {
+  width: 24%;
+  margin: 15px auto 0;
+  padding-bottom: 20px;
+  color: #f2d37b;
+  border: 0;
+  border-top: .1px solid;
 }
 
-.recep{   
-    margin: 11px 0 11px;
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--white);
-    font-family: "DM Sans", sans-serif;
-  }
+.recep {
+  margin: 11px 0 11px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--white);
+  font-family: "DM Sans", sans-serif;
+}

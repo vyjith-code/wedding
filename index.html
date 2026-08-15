@@ -146,7 +146,7 @@
 
         <a href="https://maps.app.goo.gl/MHMyzhL7eMYPGV6Y7"><img class="qr" src="qr-code.png"></a>
 
-        <p class="p-t"> click the QR CODE and get the location</p>
+        <p class="p-t"> click the QR Code and get the location</p>
 
         <!--       
         <p class="wed-blessings" class="wed-blessings-text">Blessings from VYJITH</p> -->
@@ -170,29 +170,29 @@
     <source src="seetha kalyana.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- 
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const openButton = document.getElementById("wed-open-btn");
 
-    if (!openButton) return;
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const openButton = document.getElementById("wed-open-btn");
 
-    openButton.addEventListener("click", async function () {
+      if (!openButton) return;
 
-      try {
-        if (document.documentElement.requestFullscreen) {
-          await document.documentElement.requestFullscreen();
-        } else if (document.documentElement.webkitRequestFullscreen) {
-          document.documentElement.webkitRequestFullscreen();
+      openButton.addEventListener("click", async function () {
+
+        try {
+          if (document.documentElement.requestFullscreen) {
+            await document.documentElement.requestFullscreen();
+          } else if (document.documentElement.webkitRequestFullscreen) {
+            document.documentElement.webkitRequestFullscreen();
+          }
+        } catch (error) {
+          console.log("Fullscreen request was not available:", error);
         }
-      } catch (error) {
-        console.log("Fullscreen request was not available:", error);
-      }
 
+      });
     });
-  });
-</script> -->
+  </script>
 
   <!-- <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script> -->
