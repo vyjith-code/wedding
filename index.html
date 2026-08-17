@@ -171,7 +171,7 @@
   </audio>
 
   <div class="visitor-counter">
-    Visitors: <span id="visitor-count">Loading...</span>
+    <span id="visitorCount">Loading...</span> visitors
   </div>
 
   <script>
@@ -253,7 +253,18 @@
   <script src="js/new.js"></script>
 
 
-
+  <script>
+    fetch("/.netlify/functions/visitor")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("visitorCount").textContent =
+          data.count.toLocaleString();
+      })
+      .catch(error => {
+        console.error("Visitor counter error:", error);
+        document.getElementById("visitorCount").textContent = "—";
+      });
+  </script>
 
 
 
