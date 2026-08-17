@@ -1755,3 +1755,8 @@ body.wed-inline-contact-buttons .wed-contact-links .wed-btn-contact {
   color: var(--white);
   font-family: "DM Sans", sans-serif;
 }
+
+
+.visitor-counter {
+  display: none;
+}
