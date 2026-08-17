@@ -170,7 +170,9 @@
     <source src="seetha kalyana.mp3" type="audio/mpeg">
   </audio>
 
-
+  <div class="visitor-counter">
+    Visitors: <span id="visitor-count">Loading...</span>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -191,6 +193,55 @@
         }
 
       });
+    });
+  </script>
+
+
+  <script>
+    fetch("YOUR_COUNTER_API_URL")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("visitor-count").textContent = data.count;
+      })
+      .catch(() => {
+        document.getElementById("visitor-count").textContent = "—";
+      });
+  </script>
+
+
+
+  <script>
+    // Disable right-click
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+
+    // Disable common developer shortcuts
+    document.addEventListener("keydown", function (e) {
+      // F12
+      if (e.key === "F12") {
+        e.preventDefault();
+      }
+
+      // Ctrl + Shift + I
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") {
+        e.preventDefault();
+      }
+
+      // Ctrl + Shift + J
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") {
+        e.preventDefault();
+      }
+
+      // Ctrl + U
+      if (e.ctrlKey && e.key.toLowerCase() === "u") {
+        e.preventDefault();
+      }
+
+      // Ctrl + Shift + C
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c") {
+        e.preventDefault();
+      }
     });
   </script>
 
