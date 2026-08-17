@@ -170,9 +170,6 @@
     <source src="seetha kalyana.mp3" type="audio/mpeg">
   </audio>
 
-  <div class="visitor-counter">
-    <span id="visitorCount">Loading...</span> visitors
-  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -195,19 +192,6 @@
       });
     });
   </script>
-
-
-  <script>
-    fetch("YOUR_COUNTER_API_URL")
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById("visitor-count").textContent = data.count;
-      })
-      .catch(() => {
-        document.getElementById("visitor-count").textContent = "—";
-      });
-  </script>
-
 
 
   <script>
@@ -253,18 +237,7 @@
   <script src="js/new.js"></script>
 
 
-  <script>
-    fetch("/.netlify/functions/visitor")
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById("visitorCount").textContent =
-          data.count.toLocaleString();
-      })
-      .catch(error => {
-        console.error("Visitor counter error:", error);
-        document.getElementById("visitorCount").textContent = "—";
-      });
-  </script>
+
 
 
 
